@@ -23,7 +23,7 @@ primary_region = 'sin'
   processes = ["app"]
 
 [deploy]
-  strategy = "bluegreen"
+  strategy = "canary"
 
 [[vm]]
   memory = '1gb'
