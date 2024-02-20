@@ -20,4 +20,4 @@ jobs:
       - name: Build production
         run: npm run build
       - name: Test production Build
-        run: npm run eslint
+        run: npm run test
