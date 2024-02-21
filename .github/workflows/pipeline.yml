@@ -35,7 +35,7 @@ jobs:
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-        if: ${{ github.event_name == 'push' || (github.event_name == 'pull_request' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip')) }}
+        if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
@@ -48,4 +48,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
           DEFAULT_BRANCH: main
-        if: ${{ github.event_name == 'push' || (github.event_name == 'pull_request' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip')) }}
+        if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message), ' '), '#skip') }}
